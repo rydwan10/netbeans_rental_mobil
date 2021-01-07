@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="19"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     karyawan.`id_karyawan` AS karyawan_id_karyawan,
+     karyawan.`nama` AS karyawan_nama,
+     karyawan.`alamat` AS karyawan_alamat,
+     karyawan.`no_telp` AS karyawan_no_telp,
+     karyawan.`status` AS karyawan_status,
+     karyawan.`username` AS karyawan_username,
+     karyawan.`password` AS karyawan_password
+FROM
+     `karyawan` karyawan]]>
+	</queryString>
+	<field name="karyawan_id_karyawan" class="java.lang.String"/>
+	<field name="karyawan_nama" class="java.lang.String"/>
+	<field name="karyawan_alamat" class="java.lang.String"/>
+	<field name="karyawan_no_telp" class="java.lang.String"/>
+	<field name="karyawan_status" class="java.lang.String"/>
+	<field name="karyawan_username" class="java.lang.String"/>
+	<field name="karyawan_password" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="234" width="20" height="241" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="802" height="67"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="54" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LAPORAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="232" y="67" width="568" height="37"/>
+				<textElement textAlignment="Right">
+					<font size="26" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[DATA KARYAWAN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="97" y="5" width="705" height="20" backcolor="#666666"/>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="100" height="15"/>
+					<textElement/>
+					<text><![CDATA[ID Karyawan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="100" y="0" width="149" height="15"/>
+					<textElement/>
+					<text><![CDATA[Nama]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="266" y="0" width="158" height="15"/>
+					<textElement/>
+					<text><![CDATA[Alamat]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="450" y="0" width="138" height="15"/>
+					<textElement/>
+					<text><![CDATA[No. Telepon]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="603" y="0" width="100" height="15"/>
+					<textElement/>
+					<text><![CDATA[Status]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement x="97" y="1" width="705" height="15"/>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="100" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{karyawan_id_karyawan}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="100" y="0" width="149" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{karyawan_nama}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="266" y="0" width="158" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{karyawan_alamat}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="450" y="0" width="138" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{karyawan_no_telp}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="603" y="0" width="100" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{karyawan_status}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="97" y="16" width="705" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="671" y="0" width="131" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="96" y="0" width="267" height="20"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Rental Mobil]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

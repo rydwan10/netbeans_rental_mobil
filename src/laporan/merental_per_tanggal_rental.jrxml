@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0">
+	<property name="ireport.zoom" value="2.5937424601000028"/>
+	<property name="ireport.x" value="351"/>
+	<property name="ireport.y" value="193"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="tgl_dari" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tgl_sampai" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     merental.`no_rental` AS merental_no_rental,
+     pelanggan.`nama` AS pelanggan_nama,
+     mobil.`nama_mobil` AS mobil_nama_mobil,
+     merental.`harga_sewa` AS merental_harga_sewa,
+     merental.`tanggal_rental` AS merental_tanggal_rental,
+     merental.`tanggal_kembali` AS merental_tanggal_kembali,
+     karyawan.`nama` AS karyawan_nama
+FROM
+     `karyawan` karyawan INNER JOIN `merental` merental ON karyawan.`id_karyawan` = merental.`id_karyawan`
+     INNER JOIN `mobil` mobil ON merental.`id_mobil` = mobil.`id_mobil`
+     INNER JOIN `pelanggan` pelanggan ON merental.`id_pelanggan` = pelanggan.`id_pelanggan`
+WHERE 
+	merental.`tanggal_rental` BETWEEN $P{tgl_dari} AND $P{tgl_sampai}
+ORDER BY
+     merental.`no_rental` ASC]]>
+	</queryString>
+	<field name="merental_no_rental" class="java.lang.String"/>
+	<field name="pelanggan_nama" class="java.lang.String"/>
+	<field name="mobil_nama_mobil" class="java.lang.String"/>
+	<field name="merental_harga_sewa" class="java.lang.Double"/>
+	<field name="merental_tanggal_rental" class="java.sql.Date"/>
+	<field name="merental_tanggal_kembali" class="java.sql.Date"/>
+	<field name="karyawan_nama" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="234" width="20" height="241" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="802" height="67"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="54" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LAPORAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="363" y="67" width="437" height="37"/>
+				<textElement textAlignment="Right">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[MERENTAL | PER-TANGGAL RENTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="84" width="79" height="20"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Per-Tanggal: ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="164" y="85" width="69" height="19"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tgl_dari}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="235" y="84" width="10" height="20"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="251" y="84" width="92" height="20"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tgl_sampai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="84" y="5" width="718" height="20" backcolor="#666666"/>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="82" height="15"/>
+					<textElement/>
+					<text><![CDATA[No. Rental]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="82" y="0" width="118" height="15"/>
+					<textElement/>
+					<text><![CDATA[Nama Pelanggan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="208" y="0" width="100" height="15"/>
+					<textElement/>
+					<text><![CDATA[Mobil]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="312" y="0" width="112" height="15"/>
+					<textElement/>
+					<text><![CDATA[Harga Sewa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="424" y="0" width="85" height="15"/>
+					<textElement/>
+					<text><![CDATA[Tgl Rental]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="513" y="0" width="87" height="15"/>
+					<textElement/>
+					<text><![CDATA[Tgl Kembali]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="600" y="0" width="100" height="15"/>
+					<textElement/>
+					<text><![CDATA[Nama Karyawan]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement x="84" y="1" width="718" height="15"/>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="82" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{merental_no_rental}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="82" y="0" width="118" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{pelanggan_nama}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="208" y="0" width="100" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{mobil_nama_mobil}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0">
+					<reportElement style="Detail" x="312" y="0" width="112" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{merental_harga_sewa}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement style="Detail" x="424" y="0" width="85" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{merental_tanggal_rental}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement style="Detail" x="513" y="0" width="87" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{merental_tanggal_kembali}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="600" y="0" width="116" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{karyawan_nama}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="97" y="16" width="705" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="671" y="0" width="131" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="96" y="0" width="267" height="20"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Rental Mobil]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
